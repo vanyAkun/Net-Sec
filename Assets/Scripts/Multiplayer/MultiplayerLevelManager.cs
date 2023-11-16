@@ -9,10 +9,11 @@ using UnityEngine.UI;
 
 public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 {
-    //public int maxKills = 3;
+    //public int maxKills = 3; game finishes after the timer ends
     public GameObject gameOverPopup;
     public Text winnerText;
-    // Start is called before the first frame update
+    public MultiplayerTimer multiplayerTimer;
+
     void Start()
     {
         PhotonNetwork.Instantiate("Multiplayer Player", Vector3.zero, Quaternion.identity);
@@ -73,6 +74,37 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     public void EndGame()
     {
         OnTimerEnd();
+    }
+    public void OnPlayAgainClicked()
+    {
+        // Call the RPC on all clients to reset the game
+        photonView.RPC("ResetGame", RpcTarget.All);
+    }
+    [PunRPC]
+    void ResetGame()
+    {
+        // Reset timer, scores, and any other game states here
+        ResetTimer();
+        ResetScores();
+
+        // Optionally, you can also hide the game over popup
+        gameOverPopup.SetActive(false);
+    }
+    void ResetTimer()
+    {
+        if (multiplayerTimer != null)
+        {
+            multiplayerTimer.StartTimer(); // Reset and start the timer
+        }
+    }
+    void ResetScores()
+    {
+        // Reset player scores here
+        // Example: Loop through players and reset their scores
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            player.SetScore(0);
+        }
     }
     public void LeaveGame()
     {

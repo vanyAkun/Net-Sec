@@ -210,7 +210,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1754358180}
         m_TargetAssemblyTypeName: MultiplayerLevelManager, Assembly-CSharp
-        m_MethodName: LeaveGame
+        m_MethodName: OnPlayAgainClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
