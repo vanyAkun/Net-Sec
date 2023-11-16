@@ -20,7 +20,7 @@ public class MultiplayerScore : MonoBehaviourPunCallbacks
             player.SetScore(0);
             var playerScoreObject = Instantiate(playerScorePrefab, panel);
             var playerScoreObjectText = playerScoreObject.GetComponent<Text>();
-            playerScoreObjectText.text = string.Format("{0} Score: {1}", player.NickName, player.GetScore());
+            playerScoreObjectText.text = string.Format("{0} Kills: {1}", player.NickName, player.GetScore());
 
             playerScore[player.ActorNumber] = playerScoreObject;
         }
@@ -29,7 +29,7 @@ public class MultiplayerScore : MonoBehaviourPunCallbacks
     {
         var playerScoreObject = playerScore[targetPlayer.ActorNumber];
         var playerScoreObjectText = playerScoreObject.GetComponent<Text>();
-        playerScoreObjectText.text = string.Format ("{0} Score: {1}", targetPlayer.NickName, targetPlayer.GetScore());
+        playerScoreObjectText.text = string.Format ("{0} Kills: {1}", targetPlayer.NickName, targetPlayer.GetScore());
     }
 
     // Update is called once per frame
