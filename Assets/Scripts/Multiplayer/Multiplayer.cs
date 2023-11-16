@@ -124,12 +124,9 @@ public class Multiplayer : MonoBehaviour, IPunObservable
 
     void UpdateCameraPosition()
     {
-        // Your camera movement logic here
-        // For example, set the camera's position to follow the player's position
-        Vector3 offset = new Vector3(0f, 13f, -9.87f); // Adjust these values as needed
+      
+        Vector3 offset = new Vector3(0f, 13f, -9.87f); 
         mainCamera.transform.position = transform.position + offset;
-
-        // Ensure that the camera is always looking at the player
         mainCamera.transform.LookAt(transform.position);
     }
 }
