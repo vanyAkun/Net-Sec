@@ -43,6 +43,8 @@ MonoBehaviour:
   - SyncStopTime
   - EndGame
   - UpdateDeathCount
+  - LoadMainMenuScene
+  - OnPlayerLeftRoom
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

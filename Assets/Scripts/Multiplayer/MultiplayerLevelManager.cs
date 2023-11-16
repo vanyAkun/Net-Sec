@@ -23,6 +23,21 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         winnerText.text = winner.NickName + " wins!";
         gameOverPopup.SetActive(true);
     }
+    [PunRPC]
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+
+        // Call the RPC on all clients to load the main menu
+        photonView.RPC("LoadMainMenuScene", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void LoadMainMenuScene()
+    {
+        PhotonNetwork.Disconnect();
+        //SceneManager.LoadScene("MenuScene_Main"); //   not needed as it calls the disconnect function.
+    }
     private Photon.Realtime.Player DetermineWinner()
     {
         // Your logic to determine the winner
@@ -70,7 +85,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
-        SceneManager.LoadScene("GameScene_Multiplayer");
+        SceneManager.LoadScene("MenuScene_Main");
     }
 }
 
