@@ -44,8 +44,10 @@ public class MultiplayerTimer : MonoBehaviourPunCallbacks
             remainingTime = TimerDuration;
             timerIsRunning = true;
             UpdateRoomTimerProperty(remainingTime);
-            UpdateTimerDisplay(); // Ensure the timer display is updated when the timer starts
         }
+        remainingTime = TimerDuration;
+        timerIsRunning = true;
+        UpdateRoomTimerProperty(remainingTime);
     }
     void OnTimerFinished()
     {
