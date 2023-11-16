@@ -10,10 +10,11 @@ public class LevelManagerScript : MonoBehaviour
     public int enemies = 5;
     public Text enemiesText;
     public Text timerText; // Text to display the timer
-    private float timer = 5f; //  countdown
+    private float timer = 60f; //  countdown
     public Text YouWinText;
     public Text YouLoseText;
     public Player player;
+    public Text KillcountText;
 
     public GameObject playAgainButton;
     public GameObject mainMenuButton;
@@ -84,9 +85,21 @@ public class LevelManagerScript : MonoBehaviour
 
     private void CheckGameEndCondition()
     {
-        if (timer <= 0 && enemies > 0)
+        if (timer <= 0)
         {
-            YouLoseText.gameObject.SetActive(true);
+            int enemiesKilled = 5 - enemies; // Calculate enemies killed
+            KillcountText.text = "Enemies Killed: " + enemiesKilled.ToString();
+            KillcountText.gameObject.SetActive(true); // Make sure the text is visible
+
+            if (enemies > 0)
+            {
+                YouLoseText.gameObject.SetActive(true);
+            }
+            else
+            {
+                // You could also call YouWin() here if that's appropriate
+            }
+
             playAgainButton.SetActive(true);
             mainMenuButton.SetActive(true);
         }
@@ -94,11 +107,12 @@ public class LevelManagerScript : MonoBehaviour
 
     private void YouWin()
     {
+  
         YouWinText.gameObject.SetActive(true);
         playAgainButton.SetActive(true);
         mainMenuButton.SetActive(true);
     }
-   
+  
     public void PlayAgain()
     {
         playAgainButton.SetActive(false); // Hide the button when starting a new game
