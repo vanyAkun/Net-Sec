@@ -15,6 +15,7 @@ public class LevelManagerScript : MonoBehaviour
     public Text YouLoseText;
     public Player player;
     public Text KillcountText;
+    public Text respawnCountText;
 
     public GameObject playAgainButton;
     public GameObject mainMenuButton;
@@ -23,7 +24,7 @@ public class LevelManagerScript : MonoBehaviour
         enemiesText.text = enemies.ToString();
 
         Enemy.OnEnemyKilled += OnEnemyKilled;
-       // Player.OnPlayerKilled += OnPlayerKilled;
+        Player.OnPlayerKilled += UpdateRespawnCountDisplay;
         UpdateTimerDisplay();
         if (timerText != null)
         {
@@ -31,6 +32,17 @@ public class LevelManagerScript : MonoBehaviour
         }
         playAgainButton.SetActive(false);
 
+    }
+    private void UpdateRespawnCountDisplay()
+    {
+        if (player != null && respawnCountText != null)
+        {
+            respawnCountText.text = "Respawns: " + player.respawnCount.ToString();
+        }
+        else
+        {
+            Debug.LogError("Player or RespawnCountText is null");
+        }
     }
     /*private void OnDestroy()
     {

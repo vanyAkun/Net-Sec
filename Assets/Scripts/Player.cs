@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float fireRate = 0.75f;
     public GameObject bulletPrefab;
     public Transform bulletPosition;
-    public Text RespawnText;
+    public Text respawnCountText;
     float nextFire;
 
 
@@ -38,9 +38,9 @@ public class Player : MonoBehaviour
           rigidbody = GetComponent<Rigidbody>();
         initialPosition = transform.position; // Save the initial position for respawning
         ResetHealth(); // Set initial health
-        if (RespawnText != null)
+        if (respawnCountText != null)
         {
-            RespawnText.text = "Deaths: " + respawnCount.ToString();
+            respawnCountText.text = "Deaths: " + respawnCount.ToString();
         }
     }
 
@@ -111,14 +111,15 @@ public class Player : MonoBehaviour
     }
     private void Respawn()
     {
-        // Respawn logic here
+        respawnCount++;
+        Debug.Log("Respawn count: " + respawnCount);
         respawnCount++;
         transform.position = initialPosition;
         ResetHealth();
         gameObject.SetActive(true);
-        if (RespawnText != null)
+        if (respawnCountText != null)
         {
-            RespawnText.text = "Respawns: " + respawnCount.ToString();
+            respawnCountText.text = "Respawns: " + respawnCount.ToString();
         }
     }
     private void ResetHealth()
