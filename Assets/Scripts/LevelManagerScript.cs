@@ -10,7 +10,7 @@ public class LevelManagerScript : MonoBehaviour
     public int enemies = 5;
     public Text enemiesText;
     public Text timerText; // Text to display the timer
-    private float timer = 60f; //  countdown
+    public float timer = 2f; //  countdown
     public Text YouWinText;
     public Text YouLoseText;
     public Player player;
@@ -49,7 +49,7 @@ public class LevelManagerScript : MonoBehaviour
             timer -= Time.deltaTime;
             UpdateTimerDisplay();
         }
-        else
+        else if (!playAgainButton.activeSelf) // Additional check to prevent multiple calls
         {
             CheckGameEndCondition();
         }
@@ -65,7 +65,7 @@ public class LevelManagerScript : MonoBehaviour
         if (enemies <= 0)
         {
             // Call the method to handle victory
-            YouWin();
+            CheckGameEndCondition();
         }
 
     }
@@ -85,30 +85,22 @@ public class LevelManagerScript : MonoBehaviour
 
     private void CheckGameEndCondition()
     {
-        if (timer <= 0)
+        timer = 0; // Stop the timer in any end game condition
+        UpdateTimerDisplay(); // Update the timer display
+
+        int enemiesKilled = 5 - enemies; // Calculate enemies killed
+        KillcountText.text = "Enemies Killed: " + enemiesKilled.ToString();
+        KillcountText.gameObject.SetActive(true); // Make sure the text is visible
+
+        if (enemies > 0)
         {
-            int enemiesKilled = 5 - enemies; // Calculate enemies killed
-            KillcountText.text = "Enemies Killed: " + enemiesKilled.ToString();
-            KillcountText.gameObject.SetActive(true); // Make sure the text is visible
-
-            if (enemies > 0)
-            {
-                YouLoseText.gameObject.SetActive(true);
-            }
-            else
-            {
-                // You could also call YouWin() here if that's appropriate
-            }
-
-            playAgainButton.SetActive(true);
-            mainMenuButton.SetActive(true);
+            YouLoseText.gameObject.SetActive(true);
         }
-    }
+        else
+        {
+            YouWinText.gameObject.SetActive(true);
+        }
 
-    private void YouWin()
-    {
-  
-        YouWinText.gameObject.SetActive(true);
         playAgainButton.SetActive(true);
         mainMenuButton.SetActive(true);
     }
