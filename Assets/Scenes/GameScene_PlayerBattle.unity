@@ -5530,13 +5530,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1299162541022816, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128670690422470615, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931336710575854889, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 252.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7015873304572570330, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
       propertyPath: m_Name
       value: EndGameCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7015873304572570330, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8083513836188471574, guid: 04a25e3717de6324a9ccc7269a9824c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -6,6 +6,7 @@ using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Reflection;
 
 public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 {
@@ -21,28 +22,37 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     public void OnTimerEnd()
     {
         Photon.Realtime.Player winner = DetermineWinner();
-        winnerText.text = winner.NickName + " wins!";
+
+        if (winner != null && winner.GetScore() > 0)
+        {
+            // If there's a winner with at least one kill
+            winnerText.text = winner.NickName + " wins!";
+        }
+        else
+        {
+            // If no one has any kills
+            winnerText.text = "Nobody won!";
+        }
+
         gameOverPopup.SetActive(true);
     }
+
     [PunRPC]
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
 
-        // Call the RPC on all clients to load the main menu
-        photonView.RPC("LoadMainMenuScene", RpcTarget.All);
-    }
+    } 
+       // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu }
 
     [PunRPC]
-    void LoadMainMenuScene()
+    /*void LoadMainMenuScene()
     {
         PhotonNetwork.Disconnect();
         //SceneManager.LoadScene("MenuScene_Main"); //   not needed as it calls the disconnect function.
-    }
+    }*/
     private Photon.Realtime.Player DetermineWinner()
     {
-        // Your logic to determine the winner
-        // Example: player with the highest score
         int highestScore = 0;
         Photon.Realtime.Player winner = null;
         foreach (var player in PhotonNetwork.PlayerList)
@@ -53,7 +63,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
                 winner = player;
             }
         }
-        return winner;
+        return highestScore > 0 ? winner : null;
     }
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {

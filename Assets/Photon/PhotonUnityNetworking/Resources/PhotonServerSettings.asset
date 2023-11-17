@@ -46,6 +46,7 @@ MonoBehaviour:
   - LoadMainMenuScene
   - OnPlayerLeftRoom
   - ResetGame
+  - DetermineWinner
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
