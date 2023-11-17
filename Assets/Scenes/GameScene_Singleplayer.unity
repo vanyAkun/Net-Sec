@@ -17580,7 +17580,7 @@ MonoBehaviour:
   enemies: 5
   enemiesText: {fileID: 802911802}
   timerText: {fileID: 907160715}
-  timer: 1
+  timer: 75
   YouWinText: {fileID: 1357866511}
   YouLoseText: {fileID: 1032829128}
   player: {fileID: 113101643}
