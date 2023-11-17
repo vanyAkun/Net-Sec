@@ -101,6 +101,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 
         // hide game over popup
         gameOverPopup.SetActive(false);
+        SceneManager.LoadScene("GameScene_PlayerBattle");
     }
     void ResetTimer()
     {
