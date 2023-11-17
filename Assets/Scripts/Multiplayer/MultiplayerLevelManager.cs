@@ -7,6 +7,7 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Reflection;
+using TMPro;
 
 public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 {
@@ -14,6 +15,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     public GameObject gameOverPopup;
     public Text winnerText;
     public MultiplayerTimer multiplayerTimer;
+    public TextMeshProUGUI notificationText;
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
+        ShowNotification($"{otherPlayer.NickName} has left the game");
 
     } 
        // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu }
@@ -127,7 +130,25 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
-        SceneManager.LoadScene("MenuScene_Main");
+        base.OnDisconnected(cause);
+        string message = cause == DisconnectCause.DisconnectByClientLogic ?
+                         "You have left the game" : "Connection lost";
+        ShowNotification(message);
+        Invoke("ClearNotification", 2.0f);
+        SceneManager.LoadScene("MenuScene_Main"); // Redirect to main menu
+        
+    }
+    private void ShowNotification(string message)
+    {
+        if (notificationText != null)
+            notificationText.text = message;
+        Invoke("ClearNotification", 2.0f);
+        // Additional logic for displaying the notification
+    }
+    private void ClearNotification()
+    {
+        if (notificationText != null)
+            notificationText.text = ""; // Clear the notification text
     }
 }
 

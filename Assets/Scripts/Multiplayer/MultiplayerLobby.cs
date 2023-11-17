@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using NUnit.Framework;
 using Unity.VisualScripting;
 
+
 public class MultiplayerLobby : MonoBehaviourPunCallbacks 
 {
     public Transform LoginPanel;
@@ -17,6 +18,7 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
     public Transform insideRoomPlayerList;
     public Transform listRoomPanel; //overall UIpanel that contains the room list
     public Transform listRoomPanelContent;//reference to the placewhere we will be placing and removing on-screen entries for available rooms.
+ 
 
 
     public InputField roomNameInput;
@@ -126,7 +128,6 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
     }
   public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.Log("Disconnected from the master server!Yahoo!!");
         ActivatePanel("Login");
     }
   public override void OnConnectedToMaster()
@@ -196,7 +197,10 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
     }
   public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        Debug.Log("A player left the room");
+        /*base.OnPlayerLeftRoom(otherPlayer);
+        ShowNotification($"{otherPlayer.NickName} has left the game");
+        Debug.Log("A player left the room");*/
+
         foreach (Transform child in insideRoomPlayerList)
         {
             if (child.name == otherPlayer.NickName)
@@ -206,7 +210,8 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
             }
         }
     }
-  public void OnJoinRandomRoomClicked()
+  
+    public void OnJoinRandomRoomClicked()
     {
         PhotonNetwork.JoinRandomRoom(); 
     }
