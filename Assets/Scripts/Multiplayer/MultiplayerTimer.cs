@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-using ExitGames.Client.Photon; // Add this line
+using ExitGames.Client.Photon;
 using TMPro;
 
 public class MultiplayerTimer : MonoBehaviourPunCallbacks
@@ -32,7 +32,7 @@ public class MultiplayerTimer : MonoBehaviourPunCallbacks
             if (remainingTime <= 0)
             {
                 timerIsRunning = false;
-                OnTimerFinished(); // Call this method when the timer ends
+                OnTimerFinished(); 
             }
         }
     }
@@ -44,7 +44,7 @@ public class MultiplayerTimer : MonoBehaviourPunCallbacks
             remainingTime = TimerDuration;
             timerIsRunning = true;
             UpdateRoomTimerProperty(remainingTime);
-            UpdateTimerDisplay(); // Ensure the timer display is updated when the timer starts
+            UpdateTimerDisplay(); 
         }
     }
     void OnTimerFinished()
@@ -69,7 +69,7 @@ public class MultiplayerTimer : MonoBehaviourPunCallbacks
             if (remainingTime <= 0)
             {
                 timerIsRunning = false;
-                // Handle timer end logic
+                
             }
         }
     }

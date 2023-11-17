@@ -40,10 +40,4 @@ public class MultiplayerScore : MonoBehaviourPunCallbacks
         var playerScoreObjectText = playerScoreObject.GetComponent<Text>();
         playerScoreObjectText.text = string.Format ("{0} Kills: {1}", targetPlayer.NickName, targetPlayer.GetScore());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

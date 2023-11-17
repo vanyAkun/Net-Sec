@@ -16,7 +16,7 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
     public Transform InsideRoomPanel;
     public Transform ListRoomsPanel;
     public Transform insideRoomPlayerList;
-    public Transform listRoomPanel; //overall UIpanel that contains the room list
+    public Transform listRoomPanel; 
     public Transform listRoomPanelContent;//reference to the placewhere we will be placing and removing on-screen entries for available rooms.
  
 

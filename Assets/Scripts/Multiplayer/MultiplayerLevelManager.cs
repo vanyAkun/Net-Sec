@@ -11,7 +11,7 @@ using TMPro;
 
 public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 {
-    //public int maxKills = 3; game finishes after the timer ends
+    //public int maxKills = 3; game finishes after the timer ends so nomaxkill needed
     public GameObject gameOverPopup;
     public Text winnerText;
     public MultiplayerTimer multiplayerTimer;
@@ -27,12 +27,12 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
 
         if (winner != null && winner.GetScore() > 0)
         {
-            // If there's a winner with at least one kill
+            // at least one kill
             winnerText.text = winner.NickName + " wins!";
         }
         else
         {
-            // If no one has any kills
+            // If no kills
             winnerText.text = "Nobody won!";
         }
 
@@ -46,7 +46,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         ShowNotification($"{otherPlayer.NickName} has left the game");
 
     } 
-       // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu }
+       // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu
 
     [PunRPC]
     /*void LoadMainMenuScene()
@@ -90,17 +90,16 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     }
     public void OnPlayAgainClicked()
     {
-        // Call the RPC on all clients to reset the game
+        // Call the RPC on all clients to reset
         photonView.RPC("ResetGame", RpcTarget.All);
     }
     [PunRPC]
     void ResetGame()
     {
-        // Reset timer, scores, and any other game states here
         ResetTimer();
         ResetScores();
 
-        // Optionally, you can also hide the game over popup
+        // hide game over popup
         gameOverPopup.SetActive(false);
     }
     void ResetTimer()
@@ -112,8 +111,6 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     }
     void ResetScores()
     {
-        // Reset player scores here
-        // Example: Loop through players and reset their scores
         foreach (var player in PhotonNetwork.PlayerList)
         {
             player.SetScore(0);
@@ -136,6 +133,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         ShowNotification(message);
         Invoke("ClearNotification", 2.0f);
         SceneManager.LoadScene("MenuScene_Main"); // Redirect to main menu
+        //should activate login panel??
         
     }
     private void ShowNotification(string message)
@@ -143,12 +141,12 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         if (notificationText != null)
             notificationText.text = message;
         Invoke("ClearNotification", 2.0f);
-        // Additional logic for displaying the notification
+       
     }
     private void ClearNotification()
     {
         if (notificationText != null)
-            notificationText.text = ""; // Clear the notification text
+            notificationText.text = ""; // Clears text
     }
 }
 

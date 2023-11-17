@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public Slider healthBar;
 
     public delegate void PlayerKilled();
-    public static event PlayerKilled OnPlayerKilled;
+   public static event PlayerKilled OnPlayerKilled;
 
     public int respawnCount = 0;
     private Vector3 initialPosition;
@@ -36,12 +36,9 @@ public class Player : MonoBehaviour
     void Start()
     {
           rigidbody = GetComponent<Rigidbody>();
-        initialPosition = transform.position; // Save the initial position for respawning
+        initialPosition = transform.position; // Saves initial position for respawning
         ResetHealth(); // Set initial health
-       // if (respawnCountText != null)
-       // {
-       //     respawnCountText.text = "Deaths: " + respawnCount.ToString();
-       // }
+     
     }
 
     // Update is called once per frame
@@ -100,7 +97,7 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Respawn(); // Or any other logic for player's defeat
+            Respawn();
         }
     
 
@@ -112,7 +109,7 @@ public class Player : MonoBehaviour
     private void Respawn()
     {
         respawnCount++;
-        if (deathText != null) // Updated reference
+        if (deathText != null) 
         {
             deathText.text = respawnCount.ToString();
         }

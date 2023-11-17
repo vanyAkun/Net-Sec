@@ -25,7 +25,7 @@ public class Multiplayer : MonoBehaviour, IPunObservable
     void Start()
     {
         {
-            mainCamera = GameObject.Find("Main Camera"); // Replace with the actual name of your camera GameObject
+            mainCamera = GameObject.Find("Main Camera"); 
         }
         rigidbody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
@@ -53,7 +53,7 @@ public class Multiplayer : MonoBehaviour, IPunObservable
         if (Input.GetKey(KeyCode.Space))
             photonView.RPC("Fire", RpcTarget.AllViaServer);
 
-        UpdateCameraPosition(); // Call the method to update camera position
+        UpdateCameraPosition(); 
     }
 
     void Move()
