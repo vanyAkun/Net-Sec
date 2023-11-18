@@ -7812,19 +7812,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3834362918166417966, guid: 2d0de37f06236eb418117ee7fbf12c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834362918166417966, guid: 2d0de37f06236eb418117ee7fbf12c04, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834362918166417966, guid: 2d0de37f06236eb418117ee7fbf12c04, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 768.02
+      value: 767.02
       objectReference: {fileID: 0}
     - target: {fileID: 3834362918166417966, guid: 2d0de37f06236eb418117ee7fbf12c04, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -573.1
+      value: 488.40002
       objectReference: {fileID: 0}
     - target: {fileID: 3834362918166417967, guid: 2d0de37f06236eb418117ee7fbf12c04, type: 3}
       propertyPath: m_IsActive
