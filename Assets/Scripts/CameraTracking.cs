@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class CameraTracking : MonoBehaviour
 {
-    public Transform playerCharacter;
+    public Transform Player;
 
     Vector3 cameraOffset;
 
     // Start is called before the first frame update
     void Start()
     {
-        cameraOffset = transform.position - playerCharacter.position;
+        cameraOffset = transform.position - Player.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerCharacter.position + cameraOffset;
+        transform.position = Player.position + cameraOffset;
     }
 }

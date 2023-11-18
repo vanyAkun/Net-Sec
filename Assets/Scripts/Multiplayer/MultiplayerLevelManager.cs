@@ -46,14 +46,9 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
         ShowNotification($"{otherPlayer.NickName} has left the game");
 
     } 
-       // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu
 
     [PunRPC]
-    /*void LoadMainMenuScene()
-    {
-        PhotonNetwork.Disconnect();
-        //SceneManager.LoadScene("MenuScene_Main"); //   not needed as it calls the disconnect function.
-    }*/
+ 
     private Photon.Realtime.Player DetermineWinner()
     {
         int highestScore = 0;
@@ -75,14 +70,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
             OnTimerEnd();
         }
     }
-    /* public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-     {
-         if (targetPlayer.GetScore() > maxKills)
-         {
-             winnerText.text = targetPlayer.NickName;
-             gameOverPopup.SetActive(true);
-         }
-     }*/
+ 
     [PunRPC]
     public void EndGame()
     {
@@ -130,7 +118,7 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     {
         base.OnDisconnected(cause);
         string message = cause == DisconnectCause.DisconnectByClientLogic ?
-                         "You have left the game" : "Connection lost";
+                         "You have left the game" : "Connection lost";// does this even work
         ShowNotification(message);
         Invoke("ClearNotification", 2.0f);
         SceneManager.LoadScene("MenuScene_Main"); // Redirect to main menu

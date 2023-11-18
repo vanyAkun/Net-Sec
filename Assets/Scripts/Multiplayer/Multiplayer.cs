@@ -19,14 +19,13 @@ public class Multiplayer : MonoBehaviour, IPunObservable
     [HideInInspector]
     public int health = 100;
     public Slider healthBar;
-    [SerializeField]
+    //[SerializeField]
     public GameObject mainCamera; // Reference to the main camera
 
     void Start()
     {
-        {
-            mainCamera = GameObject.Find("Main Camera"); 
-        }
+        mainCamera = GameObject.Find("Main Camera"); 
+        
         rigidbody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
     }

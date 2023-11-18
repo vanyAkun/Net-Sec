@@ -9569,7 +9569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1999fc961348d49bc0ed49ae2c0edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 1175313372}
+  Player: {fileID: 1175313372}
 --- !u!1001 &970149296
 PrefabInstance:
   m_ObjectHideFlags: 0
