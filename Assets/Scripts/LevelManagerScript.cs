@@ -36,25 +36,12 @@ public class LevelManagerScript : MonoBehaviour
     }
     private void UpdateDeathCountDisplay()
     {
-        if (player != null && deathText != null) // Updated reference
+        if (player != null && deathText != null)
         {
             deathText.text = player.respawnCount.ToString();
-            Debug.Log("[LevelManager] Updated death count: " + player.respawnCount);
         }
-        else
-        {
-            Debug.LogError("[LevelManager] Player or deathText is null");
-        }
-    }
-    /*private void OnDestroy()
-    {
-        // Unsubscribe to prevent memory leaks
-        Player.OnPlayerKilled -= OnPlayerKilled;
-    }
-    private void OnPlayerKilled()
-    {
        
-    }*/
+    }
     private void Update()
     {
 
@@ -63,13 +50,11 @@ public class LevelManagerScript : MonoBehaviour
             timer -= Time.deltaTime;
             UpdateTimerDisplay();
         }
-        else if (!playAgainButton.activeSelf) // Additional check to prevent multiple calls
+        else if (!playAgainButton.activeSelf) 
         {
             CheckGameEndCondition();
         }
     }
-
-    
 
     void OnEnemyKilled()
     {
@@ -78,7 +63,6 @@ public class LevelManagerScript : MonoBehaviour
 
         if (enemies <= 0)
         {
-            // Call the method to handle victory
             CheckGameEndCondition();
         }
 
@@ -86,25 +70,25 @@ public class LevelManagerScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MenuScene_Main"); // Replace with your main menu scene name
+        SceneManager.LoadScene("MenuScene_Main"); 
         mainMenuButton.SetActive(false);
     }
     private void UpdateTimerDisplay()
     {
-        if (timerText != null) // Check for null to prevent NullReferenceException
+        if (timerText != null) 
         {
-            timerText.text = Mathf.Ceil(timer).ToString() + "s";
+            timerText.text = Mathf.Ceil(timer).ToString();
         }
     }
 
     private void CheckGameEndCondition()
     {
-        timer = 0; // Stop the timer in any end game condition
-        UpdateTimerDisplay(); // Update the timer display
+        timer = 0; 
+        UpdateTimerDisplay(); 
 
         int enemiesKilled = 5 - enemies; // Calculate enemies killed
         KillcountText.text = "Enemies Killed: " + enemiesKilled.ToString();
-        KillcountText.gameObject.SetActive(true); // Make sure the text is visible
+        KillcountText.gameObject.SetActive(true); 
 
         if (enemies > 0)
         {
@@ -121,7 +105,7 @@ public class LevelManagerScript : MonoBehaviour
   
     public void PlayAgain()
     {
-        playAgainButton.SetActive(false); // Hide the button when starting a new game
+        playAgainButton.SetActive(false); 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

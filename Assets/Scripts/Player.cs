@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     public Slider healthBar;
 
-    public delegate void PlayerKilled();
+   public delegate void PlayerKilled();
    public static event PlayerKilled OnPlayerKilled;
 
     public int respawnCount = 0;
@@ -100,23 +100,17 @@ public class Player : MonoBehaviour
             Respawn();
         }
     
-
-        if (health <= 0)
-        {
-            EnemyDied();
-        }
     }
     private void Respawn()
     {
         respawnCount++;
-        if (deathText != null) 
-        {
-            deathText.text = respawnCount.ToString();
-        }
+      
+        deathText.text = respawnCount.ToString();
+       
         Debug.Log("Respawn count: " + respawnCount);
         transform.position = initialPosition;
         ResetHealth();
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
 
        
     }
@@ -126,9 +120,6 @@ public class Player : MonoBehaviour
         healthBar.value = 1; // Reset health bar UI
     }
 
-    void EnemyDied()
-    {
-        gameObject.SetActive(false);
-    }
+  
 
 }
