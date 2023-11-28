@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba2cdb49299d6745a75c93357cdebc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 25
   bulletSpeed: 15
   BulletHitAudio: {fileID: 8300000, guid: 55c030d3c6b3b674e9bdd7449446236c, type: 3}
   bulletImpactEffect: {fileID: 1000010321467122, guid: 0b39af0d39f5fe443807a910bd327abe, type: 3}
