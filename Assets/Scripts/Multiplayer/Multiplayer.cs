@@ -110,6 +110,10 @@ public class Multiplayer : MonoBehaviour, IPunObservable //net sync
         }
     }
 
+    void EnemyDied()
+    {
+        gameObject.SetActive(false);
+    }
 
     void PlayerDied()
     {
