@@ -3,33 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using static Player;
 
 public class LevelManagerScript : MonoBehaviour
 {
     public int enemies = 5;
-    public float timer = 2f;
-
     public Text enemiesText;
     public Text timerText; // Text to display the timer
+    public float timer = 2f; //  countdown
     public Text YouWinText;
     public Text YouLoseText;
+    public Player player;
     public Text KillcountText;
     public Text deathText;
-
-    public Player player;
- 
 
     public GameObject playAgainButton;
     public GameObject mainMenuButton;
     private void Awake()
     {
-        Player.OnPlayerKilled += UpdateDeathCountDisplay;//updated when player is killed.called from player script
-
-        Enemy.OnEnemyKilled += OnEnemyKilled;//same as player
+        Player.OnPlayerKilled += UpdateDeathCountDisplay;
         enemiesText.text = enemies.ToString();
 
-        
+        Enemy.OnEnemyKilled += OnEnemyKilled;
       
         UpdateTimerDisplay();
         if (timerText != null)
@@ -41,7 +36,6 @@ public class LevelManagerScript : MonoBehaviour
     }
     private void UpdateDeathCountDisplay()
     {
-<<<<<<< Updated upstream
         if (player != null && deathText != null) // Updated reference
         {
             deathText.text = player.respawnCount.ToString();
@@ -51,9 +45,6 @@ public class LevelManagerScript : MonoBehaviour
         {
             Debug.LogError("[LevelManager] Player or deathText is null");
         }
-=======
-     deathText.text = player.respawnCount.ToString();  
->>>>>>> Stashed changes
     }
     /*private void OnDestroy()
     {

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Multiplayer : MonoBehaviour, IPunObservable //net sync
+public class Multiplayer : MonoBehaviour, IPunObservable
 {
-    PhotonView photonView;//net operations of the object
+    PhotonView photonView;
     public float movementSpeed = 10f;
     Rigidbody rigidbody;
     public float fireRate = 0.75f;
@@ -19,39 +19,38 @@ public class Multiplayer : MonoBehaviour, IPunObservable //net sync
     [HideInInspector]
     public int health = 100;
     public Slider healthBar;
-    [SerializeField]
+    //[SerializeField]
     public GameObject mainCamera; // Reference to the main camera
 
     void Start()
     {
-        {
-            mainCamera = GameObject.Find("Main Camera"); 
-        }
+        mainCamera = GameObject.Find("Main Camera"); 
+        
         rigidbody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)//sync health
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)//send player health
+        if (stream.IsWriting)
         {
             stream.SendNext(health);
         }
         else
         {
-            health = (int)stream.ReceiveNext();//receives and updates player health
+            health = (int)stream.ReceiveNext();
             healthBar.value = health;
         }
     }
 
     void FixedUpdate()
     {
-        if (!photonView.IsMine)//this checks if the photonview is owned by the local player so it controls only the local player
+        if (!photonView.IsMine)
             return;
 
         Move();
         if (Input.GetKey(KeyCode.Space))
-            photonView.RPC("Fire", RpcTarget.AllViaServer);//remote procedural call//processed by the server first helps consistency and sync.basically whatever is done by the player to be sync  around
+            photonView.RPC("Fire", RpcTarget.AllViaServer);
 
         UpdateCameraPosition(); 
     }
@@ -71,7 +70,7 @@ public class Multiplayer : MonoBehaviour, IPunObservable //net sync
         rigidbody.MovePosition(rigidbody.position + movementDir);
     }
 
-    [PunRPC]//remote call via photon. difference with rpc?? Movement occurs on very frame and using [PunRPC] for such frequent updates could lead to lag
+    [PunRPC]
     void Fire()
     {
         if (Time.time > nextFire)

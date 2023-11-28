@@ -5,7 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using NUnit.Framework;
-using Unity.VisualScripting;
+
 
 
 public class MultiplayerLobby : MonoBehaviourPunCallbacks 
@@ -196,14 +196,10 @@ public class MultiplayerLobby : MonoBehaviourPunCallbacks
 
     }
   public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
-    {
-        /*base.OnPlayerLeftRoom(otherPlayer);
-        ShowNotification($"{otherPlayer.NickName} has left the game");
-        Debug.Log("A player left the room");*/
-
+    { 
         foreach (Transform child in insideRoomPlayerList)
         {
-            if (child.name == otherPlayer.NickName)//checks list to see if name matches player if so destroyyyy
+            if (child.name == otherPlayer.NickName)
             {
                 Destroy(child.gameObject);
                 break;

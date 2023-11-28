@@ -6,13 +6,13 @@ using Photon.Pun.UtilityScripts;
 using Photon.Pun;
 using UnityEngine.UI;
 
-// callback == piece of code(usually a function) that is provided to another piece of code to be executed later under certain conditions??okay
+
 public class MultiplayerScore : MonoBehaviourPunCallbacks
 {
     public GameObject playerScorePrefab;
     public Transform panel;
 
-    Dictionary<int, GameObject> playerScore = new Dictionary<int, GameObject>();//dictyonary that matches the players ID with the scoregameobject
+    Dictionary<int, GameObject> playerScore = new Dictionary<int, GameObject>();
     void Start()
     {
         foreach (var player in PhotonNetwork.PlayerList)
@@ -20,25 +20,24 @@ public class MultiplayerScore : MonoBehaviourPunCallbacks
             player.SetScore(0);
             var playerScoreObject = Instantiate(playerScorePrefab, panel);
             var playerScoreObjectText = playerScoreObject.GetComponent<Text>();
-            playerScoreObjectText.text = string.Format("{0} Kills: {1}", player.NickName, player.GetScore());//sets nickname and score
+            playerScoreObjectText.text = string.Format("{0} Kills: {1}", player.NickName, player.GetScore());
 
-            playerScore[player.ActorNumber] = playerScoreObject;//Adds players score GameObject to the playerScore dictionary (ActorNumber==ID basically)
+            playerScore[player.ActorNumber] = playerScoreObject;
         }
     }
-    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)//callback==piece of code (usually a function) that is provided to another piece of code to be executed later under certain conditions??okay
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        if (playerScore.ContainsKey(otherPlayer.ActorNumber))//checks actornumber(id,nick) is in the playerscore dictionary
+        if (playerScore.ContainsKey(otherPlayer.ActorNumber))
         {
             // If the player who left is in the dictionary, remove their score display
             Destroy(playerScore[otherPlayer.ActorNumber]);
             playerScore.Remove(otherPlayer.ActorNumber);
         }
     }
-    public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)//called when the properties of a player change (like the score.
+    public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         var playerScoreObject = playerScore[targetPlayer.ActorNumber];
         var playerScoreObjectText = playerScoreObject.GetComponent<Text>();
         playerScoreObjectText.text = string.Format ("{0} Kills: {1}", targetPlayer.NickName, targetPlayer.GetScore());
     }
 }
-//override changes specific functionality, fr example, integrate custom code

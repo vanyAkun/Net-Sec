@@ -1,10 +1,12 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Reflection;
 using TMPro;
 
 public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
@@ -40,18 +42,13 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        base.OnPlayerLeftRoom(otherPlayer); //calls original implementation of OnPlayerLeftRoom in the base class (MonoBehaviourPunCallbacks) but adds the notification (custom code)
+        base.OnPlayerLeftRoom(otherPlayer);
         ShowNotification($"{otherPlayer.NickName} has left the game");
 
     } 
-       // photonView.RPC("LoadMainMenuScene", RpcTarget.All); this would send everybody to the main memu
 
     [PunRPC]
-    /*void LoadMainMenuScene()
-    {
-        PhotonNetwork.Disconnect();
-        //SceneManager.LoadScene("MenuScene_Main"); //   not needed as it calls the disconnect function.
-    }*/
+ 
     private Photon.Realtime.Player DetermineWinner()
     {
         int highestScore = 0;
@@ -64,28 +61,21 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
                 winner = player;
             }
         }
-        return highestScore > 0 ? winner : null;// after checking all players it returns the winner. but firsht checks if highest score is greater than zero.
+        return highestScore > 0 ? winner : null;
     }
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
-        if (propertiesThatChanged.ContainsKey("GameEnded") && (bool)propertiesThatChanged["GameEnded"])//referred on the timer script
+        if (propertiesThatChanged.ContainsKey("GameEnded") && (bool)propertiesThatChanged["GameEnded"])
         {
             OnTimerEnd();
         }
     }
-    /* public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-     {
-         if (targetPlayer.GetScore() > maxKills)
-         {
-             winnerText.text = targetPlayer.NickName;
-             gameOverPopup.SetActive(true);
-         }
-     }*/
+ 
     [PunRPC]
-    //public void EndGame()
-    //{
-    //    OnTimerEnd();
-    //}
+    public void EndGame()
+    {
+        OnTimerEnd();
+    }
     public void OnPlayAgainClicked()
     {
         // Call the RPC on all clients to reset
@@ -128,11 +118,11 @@ public class MultiplayerLevelManager : MonoBehaviourPunCallbacks
     {
         base.OnDisconnected(cause);
         string message = cause == DisconnectCause.DisconnectByClientLogic ?
-                         "You have left the game" : "Connection lost";
+                         "You have left the game" : "Connection lost";// does this even work
         ShowNotification(message);
-        Invoke("ClearNotification", 2.0f);//invoke==if clearnotification is called it will dissapear instantly??
+        Invoke("ClearNotification", 2.0f);
         SceneManager.LoadScene("MenuScene_Main"); // Redirect to main menu
-        //should activate login panel??it works so no lol
+        //should activate login panel??
         
     }
     private void ShowNotification(string message)
