@@ -41,7 +41,7 @@ public class LevelManagerScript : MonoBehaviour
     }
     private void UpdateDeathCountDisplay()
     {
-
+<<<<<<< Updated upstream
         if (player != null && deathText != null) // Updated reference
         {
             deathText.text = player.respawnCount.ToString();
@@ -51,11 +51,19 @@ public class LevelManagerScript : MonoBehaviour
         {
             Debug.LogError("[LevelManager] Player or deathText is null");
         }
-
+=======
      deathText.text = player.respawnCount.ToString();  
-
+>>>>>>> Stashed changes
     }
-
+    /*private void OnDestroy()
+    {
+        // Unsubscribe to prevent memory leaks
+        Player.OnPlayerKilled -= OnPlayerKilled;
+    }
+    private void OnPlayerKilled()
+    {
+       
+    }*/
     private void Update()
     {
 
