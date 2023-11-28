@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class MultiplayerBulletController : MonoBehaviourPunCallbacks//photon specific
 {
-    public int damage = 50;
+    public int damage = 100;
     Rigidbody rigidBody;
 
     public float bulletSpeed = 15f;
