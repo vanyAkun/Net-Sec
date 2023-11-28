@@ -12,7 +12,7 @@ public class MultiplayerTimer : MonoBehaviourPunCallbacks
     public TextMeshProUGUI timerText;
     private float remainingTime;
     public bool timerIsRunning = false;
-    private const float TimerDuration = 60f;
+    public const float TimerDuration = 10f;
 
     void Start()
     {
