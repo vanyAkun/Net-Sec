@@ -109,6 +109,10 @@ public class Multiplayer : MonoBehaviour, IPunObservable
         }
     }
 
+    void EnemyDied()
+    {
+        gameObject.SetActive(false);
+    }
 
     void PlayerDied()
     {
