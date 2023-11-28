@@ -9569,7 +9569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1999fc961348d49bc0ed49ae2c0edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1175313372}
+  playerCharacter: {fileID: 1175313372}
 --- !u!1001 &970149296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17577,15 +17577,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07e6f6842761db459758a8134cdc830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: 5
+  enemies: 1
+  timer: 75
   enemiesText: {fileID: 802911802}
   timerText: {fileID: 907160715}
-  timer: 75
   YouWinText: {fileID: 1357866511}
   YouLoseText: {fileID: 1032829128}
-  player: {fileID: 113101643}
   KillcountText: {fileID: 537767020}
   deathText: {fileID: 614729233}
+  player: {fileID: 113101643}
   playAgainButton: {fileID: 797351589}
   mainMenuButton: {fileID: 1112000242}
 --- !u!1001 &1832333537

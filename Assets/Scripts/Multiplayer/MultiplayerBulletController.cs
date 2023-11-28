@@ -5,7 +5,7 @@ using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using Photon.Pun;
 
-public class MultiplayerBulletController : MonoBehaviourPunCallbacks
+public class MultiplayerBulletController : MonoBehaviourPunCallbacks//photon specific
 {
     public int damage = 50;
     Rigidbody rigidBody;
@@ -19,7 +19,7 @@ public class MultiplayerBulletController : MonoBehaviourPunCallbacks
   
 
     [HideInInspector]
-    public Photon.Realtime.Player owner;
+    public Photon.Realtime.Player owner;//identifies the player who fired
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class MultiplayerBulletController : MonoBehaviourPunCallbacks
         transform.forward = originalDirection;
         rigidBody.velocity = transform.forward * bulletSpeed;
 
-        owner= givenPlayer;
+        owner= givenPlayer;// which player fired basically
     }
 
     private void OnCollisionEnter(Collision collision)

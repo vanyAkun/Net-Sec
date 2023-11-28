@@ -47,7 +47,11 @@ MonoBehaviour:
   - OnPlayerLeftRoom
   - ResetGame
   - DetermineWinner
+<<<<<<< Updated upstream
+=======
   - ResetTimer
+  - OnPlayAgainClicked
+>>>>>>> Stashed changes
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

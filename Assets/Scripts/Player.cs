@@ -25,8 +25,13 @@ public class Player : MonoBehaviour
 
     public Slider healthBar;
 
+<<<<<<< Updated upstream
     public delegate void PlayerKilled();
    public static event PlayerKilled OnPlayerKilled;
+=======
+   public delegate void PlayerKilled();//
+   public static event PlayerKilled OnPlayerKilled;// provides notification to levelmanager/ static= event associated with the class itself??
+>>>>>>> Stashed changes
 
     public int respawnCount = 0;
     private Vector3 initialPosition;

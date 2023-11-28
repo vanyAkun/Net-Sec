@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     public Slider healthBar;
 
-    public delegate void EnemyKilled();
+    public delegate void EnemyKilled();//notify?? levelmanager
     public static event EnemyKilled OnEnemyKilled;
 
 
@@ -73,7 +73,6 @@ public class Enemy : MonoBehaviour
     {
         gameObject.SetActive(false);
 
-        if (OnEnemyKilled != null)
-            OnEnemyKilled.Invoke();
+        OnEnemyKilled?.Invoke();//notify the subscribed methods, (levelmanager) as it updates the enemy count and text there//
     }
 }
